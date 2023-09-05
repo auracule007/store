@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% load humanize %}
+
+{% block navbar %}  {% include 'navbar.html' %}     {% endblock navbar %}
+
+{% block carousel %}  {% include 'carousel.html' %}     {% endblock carousel %}
+
+
+{% block content %}
+
+<div class="container mt-5 mb-5">
+  <h1 class="title text-center mb-5">Your Shop cart</h1>
+  <div class="row">
+    <div class="col-12 cart">
+      <table>
+        <thead>
+          <th>Action</th>
+          <th>Item</th>
+          <th>Brand</th>
+          <th>Color</th>
+          <th>Quantity</th>
+          <th>Modify</th>
+          <th>Amount</th>
+        </thead>
+        <tbody>
+          
+          {% for items in trolley %}
+          <tr class="item">
+            <td>
+              <form action="{% url 'deleteitem' %}" method="POST">
+                {% csrf_token %}
+                  <input type="hidden" name="items_id" value="{{items.id}}" min="1" max="30">
+                  <button class="btn btn-success" onclick="return confirm('Are you sure you want to delete cart item?')"> <i class="bi bi-x-square-fill"></i></button>
+                </form>
+              </td>
+            <td><img src="{{items.product.img.url}}" alt="" style="height: 80px;"></td>
+            <td>{{items.name}}</td>
+            <td>Silver</td>
+            <td>{{items.quantity}}</td>
+            <td>
+              <form action="{% url 'change' %}" method="POST">
+              {% csrf_token %}
+                <input type="hidden" name="items_id" value="{{items.id}}" min="1" max="30">
+                <input type="number" name="quantity" min="1" max="30">
+                <button class="btn btn-success" onclick="return confirm('Are you sure you want to modify?')"> Update</button>
+              </form>
+            </td>
+            <td>₦{{items.price|floatformat:2|intcomma}}</td>
+          </tr>
+            
+          {% endfor %}
+            
+          
+         
+          <tr class="subtot">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Subtotal=</td>
+            <td>₦{{subtotal|floatformat:2|intcomma}}M</td>
+          </tr>
+          <tr class="subtot">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>VAT =</td>
+            <td>₦{{vat|floatformat:2|intcomma}}M</td>
+          </tr>
+          <tr class="subtot">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Total =</td>
+            <td>₦{{total|floatformat:2|intcomma}}M</td>
+          </tr>
+          <tr class="cartbut">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><a class="btn btn-primary" href="{% url 'checkout' %}">Checkout<i class="bi bi-arrow-right-square"></i></a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+    
+
+{% block footer %}  {% include 'footer.html' %}     {% endblock footer %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block navbar %}  {% include 'navbar.html' %}     {% endblock navbar %}
+
+{% block carousel %}  {% include 'carousel.html' %}     {% endblock carousel %}
+
+
+{% block content %}
+
+
+{% if searched_items %}
+  
+<!-- content section -->
+<div class="container product">
+    <h1 class="text-center">Result search for {{items}}...</h1>
+    <div class="row mb-5">
+      
+      {% for cars in searched_items %}
+        <div class="col-12 col-md-6 col-lg-3 pt-3">
+            <div class="card text-center">
+                <img src="{{cars.img.url}}" class="card-img-top" alt="..." style="height: 250px;">
+                <div class="card-body">
+                  <h5 class="card-title">{{cars.name}}</h5>
+                  <p class="card-text">₦{{cars.price}}</p>
+                  <a href="{% url 'details' cars.slug %}" class="btn btn-warning">Add to Cart</a>
+                </div>
+            </div>
+        </div> 
+        {% endfor %}
+      </div> 
+    </div> 
+        
+{% else %}
+    <p class="mb-5 mt-5 text-center fs-5">You searched for <b>{{items}}</b> not found</p>
+{% endif %}
+    
+{% endblock content %}
+    
+
+{% block footer %}  {% include 'footer.html' %}     {% endblock footer %}

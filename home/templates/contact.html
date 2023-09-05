@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+
+{% block navbar %}  {% include 'navbar.html' %}     {% endblock navbar %}
+
+{% block carousel %}  {% include 'carousel.html' %}     {% endblock carousel %}
+
+{% block content %}
+
+<div class="container contact mt-4">
+    <h1 class="text-center mb-5 title">Contact Us</h1>
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <form method="POST" action="{% url 'contact' %}">
+            {% csrf_token %}
+                <!-- Name input -->
+                <div class="form-outline mb-2">
+                  <label class="form-label" for="form4Example1">Name</label>
+                  <input type="text" name="name" id="form4Example1" class="form-control" />
+                </div>
+              
+                <!-- Email input -->
+                <div class="form-outline mb-2">
+                  <label class="form-label" for="form4Example2">Email address</label>
+                  <input type="email" name="email" id="form4Example2" class="form-control" />
+                </div>
+              
+                <!-- Message input -->
+                <div class="form-outline mb-2">
+                  <label class="form-label" for="form4Example3">Message</label>
+                  <textarea class="form-control" name="message" id="form4Example3" rows="4"></textarea>
+                </div>
+              
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block mb-4">Send</button>
+              </form>
+        </div>
+        <div class="col-12 col-md-6">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126845.96885299521!2d3.293488075549343!3d6.5297011686398045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b9228fa2a3999%3A0xd7a8324bddbba1f0!2sIkeja!5e0!3m2!1sen!2sng!4v1664874252197!5m2!1sen!2sng" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block footer %}  {% include 'footer.html' %}     {% endblock footer %}
+    

@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block navbar %}  {% include 'navbar.html' %}     {% endblock navbar %}
+
+{% block carousel %}  {% include 'carousel.html' %}     {% endblock carousel %}
+
+
+{% block content %}
+
+<div class="container welcome mb-5 home">
+    <h1 class="text-center pt-5">Welcome to Slick Boom</h1>
+
+    
+  
+      
+    {% for items in category %} 
+      <div class="card mb-3 mt-5">
+          <div class="row g-0">
+            <div class="col-md-6 benz">
+              <img src="{{items.img.url}}" class="img-fluid rounded-start" alt="..." style="height: 50vh;">
+            </div>
+            <div class="col-md-6">
+              <div class="card-body">
+                <h5 class="card-title text-center">{{items.name}} Garage</h5>
+                <p class="card-text text-center">{{items.description}} <br> to keep you ready to flaunt your money</p>
+                <a href="{% url 'category' items.slug %}" class="btn btn-warning mt-3">View More</a>
+                <!-- <a href="{% url 'category' items.id %}" class="btn btn-warning mt-3">View More</a> -->
+              </div>
+            </div>
+          </div>
+      </div>
+    {% endfor %}
+    <!-- <div class="card mb-3 mt-5">
+        <div class="row g-0">
+          <div class="col-md-6">
+            <div class="card-body">
+              <h5 class="card-title text-center">Honda Garage</h5>
+              <p class="card-text text-center">Find the best and luxirious ride in our Honda garage <br> to keep you ready to flaunt your money</p>
+              <a href="{% static '' %}honda.html" class="btn btn-warning mt-3">View More</a>
+            </div>
+          </div>
+          <div class="col-md-6 benz">
+            <img src="{% static '' %}img/Honda.jpg" class="img-fluid rounded-start" alt="..." style="height: 50vh;">
+          </div>
+        </div>
+    </div>
+    <div class="card mb-3 mt-5">
+        <div class="row g-0">
+          <div class="col-md-6 benz">
+            <img src="{% static '' %}img/Lexus.jpg" class="img-fluid rounded-start" alt="..." style="height: 50vh;">
+          </div>
+          <div class="col-md-6">
+            <div class="card-body">
+              <h5 class="card-title text-center">Lexus Garage</h5>
+              <p class="card-text text-center">Find the best and luxirious ride in our Lexus garage <br> to keep you ready to flaunt your money</p>
+              <a href="{% static '' %}lexus.html" class="btn btn-warning mt-3">View More</a>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="card mb-3 mt-5">
+        <div class="row g-0">
+          <div class="col-md-6">
+            <div class="card-body">
+              <h5 class="card-title text-center">Toyota Garage</h5>
+              <p class="card-text text-center">Find the best and luxirious ride in our Toyota garage <br> to keep you ready to flaunt your money</p>
+              <a href="{% static '' %}toyota.html" class="btn btn-warning mt-3">View More</a>
+            </div>
+          </div>
+          <div class="col-md-6 benz">
+            <img src="{% static '' %}img/Toyota-2.jpg" class="img-fluid rounded-start" alt="..." style="height: 50vh;">
+          </div>
+        </div>
+    </div> -->
+</div>
+    
+{% endblock content %}
+    
+
+{% block footer %}  {% include 'footer.html' %}     {% endblock footer %}
